@@ -33,7 +33,7 @@ public:
     }
 };
 
-// Deklarasi kelas Buku
+
 class Buku {
 private:
     std::string judulBuku;
@@ -52,20 +52,19 @@ public:
 };
 
 int main() {
-    // Membuat objek penerbit
+   
     Penerbit penerbit1("Penerbit A");
     Penerbit penerbit2("Penerbit B");
 
-    // Membuat objek pengarang
+   
     Pengarang pengarang1("Pengarang X", &penerbit1);
     Pengarang pengarang2("Pengarang Y", &penerbit2);
 
-    // Membuat objek buku
+   
     Buku buku1("Buku 1", &pengarang1);
     Buku buku2("Buku 2", &pengarang1);
     Buku buku3("Buku 3", &pengarang2);
 
-    // Menampilkan pengarang yang dinaungi oleh penerbit tertentu
     std::cout << "Pengarang yang dinaungi oleh Penerbit A:" << std::endl;
     if (pengarang1.getPenerbit() == &penerbit1) {
         std::cout << "- " << pengarang1.getNamaPengarang() << std::endl;
@@ -73,14 +72,14 @@ int main() {
 
     std::cout << std::endl;
 
-    // Menampilkan penerbit yang diikuti oleh seorang pengarang
+   
     std::cout << "Penerbit yang diikuti oleh Pengarang X:" << std::endl;
     std::cout << "- " << pengarang1.getPenerbit()->getNamaPenerbit() << std::endl;
 
     std::cout << std::endl;
 
 
-    // Menampilkan buku yang dikarang oleh seorang pengarang
+   
     return 0;
 
 };
