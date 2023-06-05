@@ -1,85 +1,49 @@
 #include <iostream>
-#include <vector>
-#include <string>
+using namespace std;
 
-// Deklarasi kelas Penerbit
 class Penerbit {
-private:
-    std::string namaPenerbit;
-
 public:
-    Penerbit(const std::string& nama) : namaPenerbit(nama) {}
+    int umur;
 
-    std::string getNamaPenerbit() const {
-        return namaPenerbit;
+    Penerbit(int pUmur) :
+        umur(pUmur)
+    {
+        cout << "Penerbit dibuat dengan umur " << umur << "\n" << endl;
     }
 };
 
-// Deklarasi kelas Pengarang
-class Pengarang {
-private:
-    std::string namaPengarang;
-    Penerbit* penerbit;
-
+class Pengarang : public Penerbit {
 public:
-    Pengarang(const std::string& nama, Penerbit* penerbit) : namaPengarang(nama), penerbit(penerbit) {}
 
-    std::string getNamaPengarang() const {
-        return namaPengarang;
+    Pengarang(int pUmur) :
+        Penerbit(pUmur)
+    {
+        cout << "Pengarang dibuat\n" << endl;
     }
+};
+class buku : public Penerbit {
+public:
 
-    Penerbit* getPenerbit() const {
-        return penerbit;
+    buku(int pUmur) :
+        Penerbit(pUmur)
+    {
+        cout << "buku dibuat\n" << endl;
     }
 };
 
-
-class Buku {
-private:
-    std::string judulBuku;
-    Pengarang* pengarang;
-
+class budi : public Pengarang, public buku {
 public:
-    Buku(const std::string& judul, Pengarang* pengarang) : judulBuku(judul), pengarang(pengarang) {}
 
-    std::string getJudulBuku() const {
-        return judulBuku;
-    }
-
-    Pengarang* getPengarang() const {
-        return pengarang;
+    budi(int pUmur) :
+        Pengarang(pUmur),
+        buku(pUmur)
+    {
+        cout << "Budi dibuat\n" << endl;
     }
 };
 
 int main() {
-   
-    Penerbit penerbit1("Penerbit A");
-    Penerbit penerbit2("Penerbit B");
+    budi a(12);
 
-   
-    Pengarang pengarang1("Pengarang X", &penerbit1);
-    Pengarang pengarang2("Pengarang Y", &penerbit2);
-
-   
-    Buku buku1("Buku 1", &pengarang1);
-    Buku buku2("Buku 2", &pengarang1);
-    Buku buku3("Buku 3", &pengarang2);
-
-    std::cout << "Pengarang yang dinaungi oleh Penerbit A:" << std::endl;
-    if (pengarang1.getPenerbit() == &penerbit1) {
-        std::cout << "- " << pengarang1.getNamaPengarang() << std::endl;
-    }
-
-    std::cout << std::endl;
-
-   
-    std::cout << "Penerbit yang diikuti oleh Pengarang X:" << std::endl;
-    std::cout << "- " << pengarang1.getPenerbit()->getNamaPenerbit() << std::endl;
-
-    std::cout << std::endl;
-
-
-   
     return 0;
-
-};
+}
